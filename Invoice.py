@@ -2,7 +2,7 @@ class Invoice:
     def __init__(self):
         self.items = {}
 
-    def addProducts(self, qnt, price, discount):
+    def addProduct(self, qnt, price, discount):
         self.items['qnt'] = qnt
         self.items['unit_price'] = price
         self.items['discount'] = discount
