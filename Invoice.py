@@ -20,12 +20,14 @@ class Invoice:
         for k, v in products.items():
             total_discount += (int(v['qnt']) * float(v['unit_price'])) * float(v['discount']) / 100
         total_discount = round(total_discount, 2)
-        self.total_discount = total_discount
         return total_discount
 
-    def totalPurePrice(self, products):
-        total_pure_price = self.totalImpurePrice(products) - self.totalDiscount(products)
-        return total_pure_price
+    def totalTax(self, pre_tax, tax_proportion):
+        return pre_tax * float(tax_proportion)
+
+    def totalPurePrice(self, products, tax_proportion):
+        discounted_price = self.totalImpurePrice(products) - self.totalDiscount(products)
+        return discounted_price + self.totalTax(discounted_price, tax_proportion)
 
     def inputAnswer(self, input_value):
         while True:
